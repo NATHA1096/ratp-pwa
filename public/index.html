@@ -33,7 +33,7 @@
   
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="canonical" href="https://example.com"/>
+  <link rel="canonical" href="https://metro-pwa-a109a.firebaseapp.com/"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Paris Métro 1</title>
   <link rel="stylesheet" type="text/css" href="styles/inline.css">
@@ -106,9 +106,9 @@
   </div>
 
   <!-- Uncomment the line below when ready to test with fake data -->
-  <script src="scripts/app.js" async></script>
   <script src="scripts/localforage.min.js"></script>
-
+  <script src="scripts/app.js" async></script>
+  
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -119,6 +119,10 @@
       });
     }
   </script>
+
+  <script defer src="/__/firebase/7.8.0/firebase-app.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
 
 </body>
 </html>
