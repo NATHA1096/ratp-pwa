@@ -1,0 +1,24 @@
+{
+  "name": "ratp-pwa",
+  "version": "1.0.0",
+  "description": "",
+  "main": "service-worker.js",
+  "dependencies": {
+    "firebase": "^7.8.0",
+    "localforage": "^1.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/miso-4208-labs/ratp-pwa.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/miso-4208-labs/ratp-pwa/issues"
+  },
+  "homepage": "https://gitlab.com/miso-4208-labs/ratp-pwa#README"
+}
