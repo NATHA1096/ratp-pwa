@@ -106,6 +106,8 @@
         }
 
         if (app.isLoading) {
+            window.cardLoadTime = performance.now();
+            console.log("Guardo el valor" + window.cardLoadTime + " millisegundos.");
             app.spinner.setAttribute('hidden', true);
             app.container.removeAttribute('hidden');
             app.isLoading = false;
@@ -123,30 +125,31 @@
         var url = 'https://api-ratp.pierre-grimaud.fr/v3/schedules/' + key;
 
         // Code to get times forecast from the caches object.
-        if ('caches' in window) {
-            caches.match(url)
-                .then((response) => {
-                    if (response) {
-                        response.json().then((json) => {
-                            var result = {};
-                            result.schedules= json.result.schedules;
-                            result.key = key;
-                            result.label = label;
-                            result.created = json._metadata.date;
-                            app.updateTimetableCard(result);
-                        });
-                    }
-                })
-                .catch((err) => {
-                    console.error('Error getting data from cache', err);
-                });
-        }        
+        // if ('caches' in window) {
+        //     caches.match(url)
+        //         .then((response) => {
+        //             if (response) {
+        //                 response.json().then((json) => {
+        //                     var result = {};
+        //                     result.schedules= json.result.schedules;
+        //                     result.key = key;
+        //                     result.label = label;
+        //                     result.created = json._metadata.date;
+        //                     app.updateTimetableCard(result);
+        //                 });
+        //             }
+        //         })
+        //         .catch((err) => {
+        //             console.error('Error getting data from cache', err);
+        //         });
+        // }        
 
         // Code to get times forecast from the network.
         var request = new XMLHttpRequest();
         request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
-                if (request.status === 200) {             
+                if (request.status === 200) { 
+                    window.apiLoadTime = performance.now();            
                     var response = JSON.parse(request.response);
                     var result = {};
                     result.key = key;
@@ -154,6 +157,7 @@
                     result.created = response._metadata.date;
                     result.schedules = response.result.schedules;
                     app.updateTimetableCard(result);
+                    console.log('RETORNO DE LA API');
                 }
             } else {
                 // Return the initial weather forecast since no data is available.
